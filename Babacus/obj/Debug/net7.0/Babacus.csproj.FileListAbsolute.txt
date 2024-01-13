@@ -1,0 +1,15 @@
+C:\Coding\C#\Babacus\Babacus\bin\Debug\net7.0\Babacus.exe
+C:\Coding\C#\Babacus\Babacus\bin\Debug\net7.0\Babacus.deps.json
+C:\Coding\C#\Babacus\Babacus\bin\Debug\net7.0\Babacus.runtimeconfig.json
+C:\Coding\C#\Babacus\Babacus\bin\Debug\net7.0\Babacus.dll
+C:\Coding\C#\Babacus\Babacus\bin\Debug\net7.0\Babacus.pdb
+C:\Coding\C#\Babacus\Babacus\obj\Debug\net7.0\Babacus.csproj.AssemblyReference.cache
+C:\Coding\C#\Babacus\Babacus\obj\Debug\net7.0\Babacus.GeneratedMSBuildEditorConfig.editorconfig
+C:\Coding\C#\Babacus\Babacus\obj\Debug\net7.0\Babacus.AssemblyInfoInputs.cache
+C:\Coding\C#\Babacus\Babacus\obj\Debug\net7.0\Babacus.AssemblyInfo.cs
+C:\Coding\C#\Babacus\Babacus\obj\Debug\net7.0\Babacus.csproj.CoreCompileInputs.cache
+C:\Coding\C#\Babacus\Babacus\obj\Debug\net7.0\Babacus.dll
+C:\Coding\C#\Babacus\Babacus\obj\Debug\net7.0\refint\Babacus.dll
+C:\Coding\C#\Babacus\Babacus\obj\Debug\net7.0\Babacus.pdb
+C:\Coding\C#\Babacus\Babacus\obj\Debug\net7.0\Babacus.genruntimeconfig.cache
+C:\Coding\C#\Babacus\Babacus\obj\Debug\net7.0\ref\Babacus.dll
