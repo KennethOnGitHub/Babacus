@@ -15,7 +15,7 @@ namespace Babacus
             inputVariables = inputVars;
         }
 
-        public abstract bool evaluate();
+        public abstract bool Evaluate();
 
     }
 
@@ -31,9 +31,9 @@ namespace Babacus
             this.subexpression = sub;
         }
 
-        public override bool evaluate()
+        public override bool Evaluate()
         {
-            return !subexpression.evaluate();
+            return !subexpression.Evaluate();
         }
     }
 
@@ -45,7 +45,7 @@ namespace Babacus
             this.varIndex = varIndex;
         }
 
-        public override bool evaluate()
+        public override bool Evaluate()
         {
             return inputVariables[varIndex];
         }
@@ -67,11 +67,11 @@ namespace Babacus
         {
         }
 
-        public override bool evaluate()
+        public override bool Evaluate()
         {
             foreach (Expression expression in subexpressions)
             {
-                if (expression.evaluate())
+                if (expression.Evaluate())
                 {
                     return true;
                 }
@@ -83,11 +83,11 @@ namespace Babacus
     public class AndExpression : CompositeExpression
     {
         public AndExpression(bool[] inputVars, Expression[] subs) : base(inputVars, subs) { }
-        public override bool evaluate()
+        public override bool Evaluate()
         {
             foreach (Expression expression in subexpressions)
             {
-                if (!expression.evaluate())
+                if (!expression.Evaluate())
                 {
                     return false;
                 }
