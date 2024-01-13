@@ -9,6 +9,10 @@ namespace Babacus
 {
     static internal class Parser
     {
+        public static Expression Parse(string input)
+        {
+            
 
+        }
     }
 }
