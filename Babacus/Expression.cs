@@ -10,55 +10,70 @@ namespace Babacus
     public abstract class Expression
     {
         public bool[] inputVariables;
-        public Expression(bool[] inputVars)
+        public Expression()
         {
-            inputVariables = inputVars;
         }
 
-        public abstract bool Evaluate();
+        public abstract bool Evaluate(bool[] inputvars);
 
     }
 
     public abstract class SingleExpression : Expression {
-        public SingleExpression(bool[] inputVars) : base(inputVars) { }
+        public SingleExpression() : base() { }
     }
 
     public class NotExpression : SingleExpression
     {
         Expression subexpression;
-        public NotExpression(bool[] inputVars, Expression sub) : base(inputVars)
+        public NotExpression(Expression sub) : base()
         {
             this.subexpression = sub;
         }
 
-        public override bool Evaluate()
+        public override bool Evaluate(bool[] inputvars)
         {
-            return !subexpression.Evaluate();
+            return !subexpression.Evaluate(inputvars);
         }
     }
 
     public class VariableExpression : SingleExpression
     {
         int varIndex;
-        public VariableExpression(bool[] inputVars, int varIndex) : base(inputVars)
+        public VariableExpression(int varIndex) : base()
         {
             this.varIndex = varIndex;
         }
 
-        public override bool Evaluate()
+        public override bool Evaluate(bool[] inputvars)
         {
             return inputVariables[varIndex];
         }
     }
 
+    public class Constant : SingleExpression
+    {
+        bool val;
+        public ConstantTrue(bool val) : base() 
+        {
+            this.val = val;
+                
+        }
+
+        public override bool Evaluate(bool[] inputvars)
+        {
+            return this.val;
+        }
+    }
+
+
+
 
     public abstract class CompositeExpression : Expression
     {
-        Expression leftExpression;
-        Expression rightExpression;
+        protected Expression leftExpression;
+        protected Expression rightExpression;
 
-        protected Expression[] subexpressions;
-        public CompositeExpression(bool[] inputVars, Expression left, Expression right) : base(inputVars)
+        public CompositeExpression(Expression left, Expression right) : base()
         {
             this.leftExpression = left;
             this.rightExpression = right;
@@ -67,29 +82,22 @@ namespace Babacus
     }
     public class OrExpression : CompositeExpression
     {
-        public OrExpression(bool[] inputVars, Expression left, Expression right) : base(inputVars, left, right)
+        public OrExpression(Expression left, Expression right) : base(left, right)
         {
         }
 
-        public override bool Evaluate()
+        public override bool Evaluate(bool[] inputvars)
         {
-            return this;
+            return leftExpression.Evaluate(inputvars) || rightExpression.Evaluate(inputvars);
         }
     }
 
     public class AndExpression : CompositeExpression
     {
-        public AndExpression(bool[] inputVars, Expression[] subs) : base(inputVars, subs) { }
-        public override bool Evaluate()
+        public AndExpression(Expression left, Expression right) : base(left, right) { }
+        public override bool Evaluate(bool[] inputvars)
         {
-            foreach (Expression expression in subexpressions)
-            {
-                if (!expression.Evaluate())
-                {
-                    return false;
-                }
-            }
-            return true;
+            return leftExpression.Evaluate(inputvars) && rightExpression.Evaluate(inputvars);
         }
     }
 

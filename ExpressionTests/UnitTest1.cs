@@ -35,9 +35,7 @@ namespace ExpressionTests
             VariableExpression A = new VariableExpression(inputVars, 0);
             VariableExpression B = new VariableExpression(inputVars, 1);
 
-            Expression[] subs = { A, B };
-
-            AndExpression expression = new AndExpression(inputVars, subs);
+            AndExpression expression = new AndExpression(inputVars, A, B);
 
             Assert.IsTrue(expression.Evaluate());
 
@@ -50,43 +48,12 @@ namespace ExpressionTests
             VariableExpression A = new VariableExpression(inputVars, 0);
             VariableExpression B = new VariableExpression(inputVars, 1);
 
-            Expression[] subs = { A, B };
-
-            AndExpression expression = new AndExpression(inputVars, subs);
+            AndExpression expression = new AndExpression(inputVars, A, B);
 
             Assert.IsFalse(expression.Evaluate());
 
         }        
-        [TestMethod]
-        public void EvaluateAndExpression_3Trues_True()
-        {
-            bool[] inputVars = { true, true, true };
-            VariableExpression A = new VariableExpression(inputVars, 0);
-            VariableExpression B = new VariableExpression(inputVars, 1);
-            VariableExpression C = new VariableExpression(inputVars, 2);
-
-            Expression[] subs = { A, B, C };
-
-            AndExpression expression = new AndExpression(inputVars, subs);
-
-            Assert.IsTrue(expression.Evaluate());
-
-        }        
-        [TestMethod]
-        public void EvaluateAndExpression_2Trues1False_True()
-        {
-            bool[] inputVars = { true, false, true };
-            VariableExpression A = new VariableExpression(inputVars, 0);
-            VariableExpression B = new VariableExpression(inputVars, 1);
-            VariableExpression C = new VariableExpression(inputVars, 2);
-
-            Expression[] subs = { A, B, C };
-
-            AndExpression expression = new AndExpression(inputVars, subs);
-
-            Assert.IsFalse(expression.Evaluate());
-
-        }
+       
 
         [TestMethod]
         public void EvaluateOrExpression_2Trues_Trues()
@@ -95,9 +62,7 @@ namespace ExpressionTests
             VariableExpression A = new VariableExpression(inputVars, 0);
             VariableExpression B = new VariableExpression(inputVars, 1);
 
-            Expression[] subs = { A, B };
-
-            OrExpression expression = new OrExpression(inputVars, subs);
+            OrExpression expression = new OrExpression(inputVars, A, B);
 
             Assert.IsTrue(expression.Evaluate());
 
@@ -109,9 +74,7 @@ namespace ExpressionTests
             VariableExpression A = new VariableExpression(inputVars, 0);
             VariableExpression B = new VariableExpression(inputVars, 1);
 
-            Expression[] subs = { A, B };
-
-            OrExpression expression = new OrExpression(inputVars, subs);
+            OrExpression expression = new OrExpression(inputVars, A, B);
 
             Assert.IsTrue(expression.Evaluate());
 
@@ -123,43 +86,12 @@ namespace ExpressionTests
             VariableExpression A = new VariableExpression(inputVars, 0);
             VariableExpression B = new VariableExpression(inputVars, 1);
 
-            Expression[] subs = { A, B };
-
-            OrExpression expression = new OrExpression(inputVars, subs);
+            OrExpression expression = new OrExpression(inputVars, A, B);
 
             Assert.IsFalse(expression.Evaluate());
 
         }
-        [TestMethod]
-        public void EvaluateOrExpression_3True_True()
-        {
-            bool[] inputVars = { true, true, true };
-            VariableExpression A = new VariableExpression(inputVars, 0);
-            VariableExpression B = new VariableExpression(inputVars, 1);
-            VariableExpression C = new VariableExpression(inputVars, 2);
-
-            Expression[] subs = { A, B, C };
-
-            OrExpression expression = new OrExpression(inputVars, subs);
-
-            Assert.IsTrue(expression.Evaluate());
-
-        }
-
-        [TestMethod]
-        public void EvaluateOrExpression_2True1False_True()
-        {
-            bool[] inputVars = { true, false, true };
-            VariableExpression A = new VariableExpression(inputVars, 0);
-            VariableExpression B = new VariableExpression(inputVars, 1);
-            VariableExpression C = new VariableExpression(inputVars, 2);
-
-            Expression[] subs = { A, B, C };
-
-            OrExpression expression = new OrExpression(inputVars, subs);
-
-            Assert.IsTrue(expression.Evaluate());
-        }
+        
 
         [TestMethod]
         public void EvaluateNotExpression_True_False()
@@ -194,9 +126,7 @@ namespace ExpressionTests
             VariableExpression A = new VariableExpression(inputVars, 0);
             VariableExpression B = new VariableExpression(inputVars, 1);
 
-            Expression[] subs = { A, B };
-
-            AndExpression andExpression = new AndExpression(inputVars, subs);
+            AndExpression andExpression = new AndExpression(inputVars, A, B);
 
             NotExpression expression = new NotExpression(inputVars, andExpression);
 
@@ -212,9 +142,8 @@ namespace ExpressionTests
             VariableExpression A = new VariableExpression(inputVars, 0);
             VariableExpression B = new VariableExpression(inputVars, 1);
 
-            Expression[] subs = { A, B };
 
-            AndExpression andExpression = new AndExpression(inputVars, subs);
+            AndExpression andExpression = new AndExpression(inputVars, A, B);
 
             NotExpression expression = new NotExpression(inputVars, andExpression);
 
