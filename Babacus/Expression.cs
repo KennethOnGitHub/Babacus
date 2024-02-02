@@ -54,29 +54,26 @@ namespace Babacus
 
     public abstract class CompositeExpression : Expression
     {
+        Expression leftExpression;
+        Expression rightExpression;
 
         protected Expression[] subexpressions;
-        public CompositeExpression(bool[] inputVars, Expression[] subs) : base(inputVars)
+        public CompositeExpression(bool[] inputVars, Expression left, Expression right) : base(inputVars)
         {
-            subexpressions = subs;
+            this.leftExpression = left;
+            this.rightExpression = right;
+
         }
     }
     public class OrExpression : CompositeExpression
     {
-        public OrExpression(bool[] inputVars, Expression[] subs) : base(inputVars, subs)
+        public OrExpression(bool[] inputVars, Expression left, Expression right) : base(inputVars, left, right)
         {
         }
 
         public override bool Evaluate()
         {
-            foreach (Expression expression in subexpressions)
-            {
-                if (expression.Evaluate())
-                {
-                    return true;
-                }
-            }
-            return false;
+            return this;
         }
     }
 

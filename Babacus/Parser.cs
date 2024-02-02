@@ -11,7 +11,14 @@ namespace Babacus
     {
         public static Expression Parse(string input)
         {
-            
+            int parserHead = 0;
+
+            while (parserHead < input.Length)
+            {
+
+
+
+            }
 
         }
     }
