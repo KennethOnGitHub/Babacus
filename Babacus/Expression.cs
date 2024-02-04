@@ -9,12 +9,13 @@ namespace Babacus
 {
     public abstract class Expression
     {
-        public bool[] inputVariables;
         public Expression()
         {
         }
 
         public abstract bool Evaluate(bool[] inputvars);
+
+        public abstract string getStringRepresentation();
 
     }
 
@@ -34,6 +35,12 @@ namespace Babacus
         {
             return !subexpression.Evaluate(inputvars);
         }
+
+        public override string getStringRepresentation()
+        {
+            string output = string.Format("¬{0}", subexpression.getStringRepresentation());
+            return output;
+        }
     }
 
     public class VariableExpression : SingleExpression
@@ -46,22 +53,31 @@ namespace Babacus
 
         public override bool Evaluate(bool[] inputvars)
         {
-            return inputVariables[varIndex];
+            return inputvars[varIndex];
+        }
+
+        public override string getStringRepresentation()
+        {
+            return "A" + varIndex;
         }
     }
 
     public class Constant : SingleExpression
     {
         bool val;
-        public ConstantTrue(bool val) : base() 
+        public Constant(bool val) : base() 
         {
-            this.val = val;
-                
+            this.val = val;   
         }
 
         public override bool Evaluate(bool[] inputvars)
         {
             return this.val;
+        }
+
+        public override string getStringRepresentation()
+        {
+            return this.val ? "1" : "0";
         }
     }
 
@@ -82,13 +98,17 @@ namespace Babacus
     }
     public class OrExpression : CompositeExpression
     {
-        public OrExpression(Expression left, Expression right) : base(left, right)
-        {
-        }
+        public OrExpression(Expression left, Expression right) : base(left, right) { }
 
         public override bool Evaluate(bool[] inputvars)
         {
             return leftExpression.Evaluate(inputvars) || rightExpression.Evaluate(inputvars);
+        }
+
+        public override string getStringRepresentation()
+        {
+            string output = string.Format("{0} | {1}", leftExpression.getStringRepresentation(), rightExpression.getStringRepresentation());
+            return output;
         }
     }
 
@@ -99,6 +119,13 @@ namespace Babacus
         {
             return leftExpression.Evaluate(inputvars) && rightExpression.Evaluate(inputvars);
         }
+        public override string getStringRepresentation()
+        {
+            string output = string.Format("{0} & {1}", leftExpression.getStringRepresentation(), rightExpression.getStringRepresentation());
+            return output;
+        }
+
+
     }
 
 
