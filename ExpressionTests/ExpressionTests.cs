@@ -154,18 +154,64 @@ namespace ExpressionTests
     }
 
     [TestClass] //i would put these in a different file but idk if that'll work
-    public class ParserTests
+    public class PrintTests
     {
-        /*
+        
         [TestMethod]
         public void ParseFactor_Variable_VariableExpression()
         {
             Parser parser = new Parser("A");
 
-            Expression expected = new VariableExpression(0);
+            Expression expression = parser.ParseFactor();
+            string result = expression.getStringRepresentation();
 
-            Assert.AreEqual(expected, parser.ParseFactor());
+            Assert.AreEqual("A", result);
 
-        }*/
+        }
+
+        [TestMethod]
+        public void ParseFactor_B_BVariableExpression()
+        {
+            Parser parser = new Parser("B");
+
+            Expression expression = parser.ParseFactor();
+            string result = expression.getStringRepresentation();
+
+            Assert.AreEqual("B", result);
+
+        }
+
+        [TestMethod]
+        public void ParseFactor_NotB_NotBExpression()
+        {
+            Parser parser = new Parser("¬B");
+
+            Expression expression = parser.ParseFactor();
+            string result = expression.getStringRepresentation();
+
+            Assert.AreEqual("¬B", result);
+        }
+
+        [TestMethod]
+        public void ParseFactor_1_ConstExpression1()
+        {
+            Parser parser = new Parser("1");
+
+            Expression expression = parser.ParseFactor();
+            string result = expression.getStringRepresentation();
+
+            Assert.AreEqual("1", result);
+        }
+
+        [TestMethod]
+        public void ParseFactor_0_ConstExpression0()
+        {
+            Parser parser = new Parser("0");
+
+            Expression expression = parser.ParseFactor();
+            string result = expression.getStringRepresentation();
+
+            Assert.AreEqual("0", result);
+        }
     }
 }

@@ -16,14 +16,23 @@ namespace Babacus
         {
             this.input = input;
         }
-        /*
+        
         public Expression ParseExpression()
         {
-            while (parserHead < input.Length)
-            {
-                Expression left = ParseTerm();
+            parserHead++;
 
+            Expression left = ParseTerm();
+
+            parserHead++;
+            if (input[parserHead] == '|')
+            {
+                Expression right = ParseExpression();
+
+                return new OrExpression( left, right );
             }
+
+            return left;
+
         }
 
         public Expression ParseTerm()
@@ -43,7 +52,7 @@ namespace Babacus
                 
             }
 
-        }*/
+        }
 
         public Expression ParseFactor()
         {

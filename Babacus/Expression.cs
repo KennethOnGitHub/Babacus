@@ -15,7 +15,7 @@ namespace Babacus
 
         public abstract bool Evaluate(bool[] inputvars);
 
-        public abstract string getStringRepresentation();
+        public abstract string getStringRepresentation(); //ovveride tostring instead!
 
     }
 
@@ -58,7 +58,9 @@ namespace Babacus
 
         public override string getStringRepresentation()
         {
-            return "A" + varIndex;
+            char letter = (char)('A' + varIndex);
+
+            return letter.ToString();
         }
     }
 
