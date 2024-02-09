@@ -259,7 +259,7 @@ namespace ExpressionTests
         }
 
         [TestMethod]
-        public void ParseExpression_ANDBORCANDB_ANDBORCANDBxpression()
+        public void ParseExpression_ANDBORCANDB_ANDBORCANDBExpression()
         {
             Parser parser = new Parser("A&B|C&D");
 
@@ -267,6 +267,17 @@ namespace ExpressionTests
             string result = expression.getStringRepresentation();
 
             Assert.AreEqual("A & B | C & D", result);
+        }
+
+        [TestMethod]
+          public void ParseExpression_BracketedA_BracketedAExpression()
+        {
+            Parser parser = new Parser("(A)");
+
+            Expression expression = parser.ParseExpression();
+            string result = expression.getStringRepresentation();
+
+            Assert.AreEqual("(A)", result);
         }
     }
 }

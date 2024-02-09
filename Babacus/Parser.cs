@@ -35,7 +35,7 @@ namespace Babacus
                 return new OrExpression( left, right );
             }
 
-            //parserhead--;
+            parserHead--;
             return left;
 
         }
@@ -81,7 +81,7 @@ namespace Babacus
             {
                 return new Constant(input[parserHead] == '1');
             }
-            /*
+            
             if (this.input[parserHead] == '(')
             {
                 Expression bracketedExpression = ParseExpression();
@@ -93,7 +93,7 @@ namespace Babacus
                 {
                     throw new Exception("Yo u got ur brackets wrong g");
                 }
-            }*/
+            }
 
             throw new Exception("Invalid text!!!!! :333 Empty Factor!");
 
