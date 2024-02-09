@@ -213,5 +213,60 @@ namespace ExpressionTests
 
             Assert.AreEqual("0", result);
         }
+
+        [TestMethod]
+        public void ParseTerm_AANDB_AANDBExpression()
+        {
+            Parser parser = new Parser("A&B");
+
+            Expression expression = parser.ParseTerm();
+            string result = expression.getStringRepresentation();
+
+            Assert.AreEqual("A & B", result);
+        }
+
+        [TestMethod]
+        public void ParseTerm_AANDBANDC_AANDBANDCExpression()
+        {
+            Parser parser = new Parser("A&B&C");
+
+            Expression expression = parser.ParseTerm();
+            string result = expression.getStringRepresentation();
+
+            Assert.AreEqual("A & B & C", result);
+        }
+
+        [TestMethod]
+        public void ParseTerm_BANDBANDC_BANDBANDCExpression()
+        {
+            Parser parser = new Parser("B&A&B");
+
+            Expression expression = parser.ParseTerm();
+            string result = expression.getStringRepresentation();
+
+            Assert.AreEqual("B & A & B", result);
+        }
+
+        [TestMethod]
+        public void ParseExpression_AORB_AORBExpression()
+        {
+            Parser parser = new Parser("A|B");
+
+            Expression expression = parser.ParseExpression();
+            string result = expression.getStringRepresentation();
+
+            Assert.AreEqual("A | B", result);
+        }
+
+        [TestMethod]
+        public void ParseExpression_ANDBORCANDB_ANDBORCANDBxpression()
+        {
+            Parser parser = new Parser("A&B|C&D");
+
+            Expression expression = parser.ParseExpression();
+            string result = expression.getStringRepresentation();
+
+            Assert.AreEqual("A & B | C & D", result);
+        }
     }
 }

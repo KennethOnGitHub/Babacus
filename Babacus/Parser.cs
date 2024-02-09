@@ -19,11 +19,15 @@ namespace Babacus
         
         public Expression ParseExpression()
         {
-            parserHead++;
-
             Expression left = ParseTerm();
 
             parserHead++;
+
+            if (parserHead >= input.Length)
+            {
+                return left;
+            }
+
             if (input[parserHead] == '|')
             {
                 Expression right = ParseExpression();
@@ -31,6 +35,7 @@ namespace Babacus
                 return new OrExpression( left, right );
             }
 
+            //parserhead--;
             return left;
 
         }
@@ -49,8 +54,13 @@ namespace Babacus
             if (input[parserHead] == '&')
             {
                 Expression right = ParseTerm();
+
+                return new AndExpression( left, right );
                 
             }
+
+            parserHead--;
+            return left;
 
         }
 
