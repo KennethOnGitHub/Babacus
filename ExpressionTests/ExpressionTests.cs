@@ -279,5 +279,31 @@ namespace ExpressionTests
 
             Assert.AreEqual("(A)", result);
         }
+
+        [TestMethod]
+        public void ParseExpression_imdone_ahhhhh()
+        {
+            Parser parser = new Parser();
+
+            Expression expression = parser.ParseExpression("A&(B|C)&D");
+            string result = expression.getStringRepresentation();
+
+            Assert.AreEqual("A & (B | C) & D", result);
+        }
+    }
+
+    [TestClass]
+    public class SanitiserTests
+    {
+        [TestMethod]
+        public void RemoveSpaces() //bad name, fix later
+        {
+            string unclean = "(A &B) ";
+
+            string result = Sanitiser.Sanitise(unclean);
+
+            Assert.AreEqual("(A&B)", result);
+        }
+
     }
 }
