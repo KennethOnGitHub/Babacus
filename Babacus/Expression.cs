@@ -23,6 +23,26 @@ namespace Babacus
         public SingleExpression() : base() { }
     }
 
+    public class BracketedExpression : SingleExpression
+    {
+        Expression subexpression;
+        public BracketedExpression(Expression sub) : base()
+        {
+            this.subexpression = sub;
+        }
+
+        public override bool Evaluate(bool[] inputvars)
+        {
+            return subexpression.Evaluate(inputvars);
+        }
+
+        public override string getStringRepresentation()
+        {
+            return string.Format("({0})", subexpression.getStringRepresentation());
+        }
+
+    }
+
     public class NotExpression : SingleExpression
     {
         Expression subexpression;

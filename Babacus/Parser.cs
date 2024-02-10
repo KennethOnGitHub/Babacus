@@ -87,7 +87,7 @@ namespace Babacus
                 parserHead++;
                 if (input[parserHead] ==  ')')
                 {
-                    return bracketedExpression;
+                    return new BracketedExpression(bracketedExpression);
                 }else
                 {
                     throw new Exception("Yo u got ur brackets wrong g");
