@@ -10,16 +10,15 @@ namespace Babacus
     public class Parser
     {
         int parserHead = -1;
-        string input;
 
-        public Parser(string input ) //having this be a parameter set when it is instantiated feels kinda bad ngl, maybe make a singe parse method where you pass in the input as a param or maybe go in on the recursive approach?
+        public Expression Parse(string input)
         {
-            this.input = input;
+            return ParseExpression(input);
         }
         
-        public Expression ParseExpression()
+        public Expression ParseExpression(string input)
         {
-            Expression left = ParseTerm();
+            Expression left = ParseTerm(input);
 
             parserHead++;
 
@@ -30,7 +29,7 @@ namespace Babacus
 
             if (input[parserHead] == '|')
             {
-                Expression right = ParseExpression();
+                Expression right = ParseExpression(input);
 
                 return new OrExpression( left, right );
             }
@@ -40,9 +39,9 @@ namespace Babacus
 
         }
 
-        public Expression ParseTerm()
+        public Expression ParseTerm(string input)
         {
-            Expression left = ParseFactor();
+            Expression left = ParseFactor(input);
 
             parserHead++;
 
@@ -53,7 +52,7 @@ namespace Babacus
 
             if (input[parserHead] == '&')
             {
-                Expression right = ParseTerm();
+                Expression right = ParseTerm(input);
 
                 return new AndExpression( left, right );
                 
@@ -64,27 +63,27 @@ namespace Babacus
 
         }
 
-        public Expression ParseFactor()
+        public Expression ParseFactor(string input)
         {
             parserHead++;
-            if (this.input[parserHead] == '¬')
+            if (input[parserHead] == '¬')
             {
-                return new NotExpression(ParseFactor());
+                return new NotExpression(ParseFactor(input));
             }
 
-            if (Char.IsLetter(this.input[parserHead]) == true)
+            if (Char.IsLetter(input[parserHead]) == true)
             {
-                return new VariableExpression(this.input[parserHead] - 'A');
+                return new VariableExpression(input[parserHead] - 'A');
             }
 
-            if (this.input[parserHead] == '0' || this.input[parserHead] == '1')
+            if (input[parserHead] == '0' || input[parserHead] == '1')
             {
                 return new Constant(input[parserHead] == '1');
             }
             
-            if (this.input[parserHead] == '(')
+            if (input[parserHead] == '(')
             {
-                Expression bracketedExpression = ParseExpression();
+                Expression bracketedExpression = ParseExpression(input);
                 parserHead++;
                 if (input[parserHead] ==  ')')
                 {

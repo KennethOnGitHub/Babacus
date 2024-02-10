@@ -160,9 +160,9 @@ namespace ExpressionTests
         [TestMethod]
         public void ParseFactor_Variable_VariableExpression()
         {
-            Parser parser = new Parser("A");
+            Parser parser = new Parser();
 
-            Expression expression = parser.ParseFactor();
+            Expression expression = parser.ParseFactor("A");
             string result = expression.getStringRepresentation();
 
             Assert.AreEqual("A", result);
@@ -172,9 +172,9 @@ namespace ExpressionTests
         [TestMethod]
         public void ParseFactor_B_BVariableExpression()
         {
-            Parser parser = new Parser("B");
+            Parser parser = new Parser();
 
-            Expression expression = parser.ParseFactor();
+            Expression expression = parser.ParseFactor("B");
             string result = expression.getStringRepresentation();
 
             Assert.AreEqual("B", result);
@@ -184,9 +184,9 @@ namespace ExpressionTests
         [TestMethod]
         public void ParseFactor_NotB_NotBExpression()
         {
-            Parser parser = new Parser("¬B");
+            Parser parser = new Parser();
 
-            Expression expression = parser.ParseFactor();
+            Expression expression = parser.ParseFactor("¬B");
             string result = expression.getStringRepresentation();
 
             Assert.AreEqual("¬B", result);
@@ -195,9 +195,9 @@ namespace ExpressionTests
         [TestMethod]
         public void ParseFactor_1_ConstExpression1()
         {
-            Parser parser = new Parser("1");
+            Parser parser = new Parser();
 
-            Expression expression = parser.ParseFactor();
+            Expression expression = parser.ParseFactor("1");
             string result = expression.getStringRepresentation();
 
             Assert.AreEqual("1", result);
@@ -206,9 +206,9 @@ namespace ExpressionTests
         [TestMethod]
         public void ParseFactor_0_ConstExpression0()
         {
-            Parser parser = new Parser("0");
+            Parser parser = new Parser();
 
-            Expression expression = parser.ParseFactor();
+            Expression expression = parser.ParseFactor("0");
             string result = expression.getStringRepresentation();
 
             Assert.AreEqual("0", result);
@@ -217,9 +217,9 @@ namespace ExpressionTests
         [TestMethod]
         public void ParseTerm_AANDB_AANDBExpression()
         {
-            Parser parser = new Parser("A&B");
+            Parser parser = new Parser();
 
-            Expression expression = parser.ParseTerm();
+            Expression expression = parser.ParseTerm("A&B");
             string result = expression.getStringRepresentation();
 
             Assert.AreEqual("A & B", result);
@@ -228,9 +228,9 @@ namespace ExpressionTests
         [TestMethod]
         public void ParseTerm_AANDBANDC_AANDBANDCExpression()
         {
-            Parser parser = new Parser("A&B&C");
+            Parser parser = new Parser();
 
-            Expression expression = parser.ParseTerm();
+            Expression expression = parser.ParseTerm("A&B&C");
             string result = expression.getStringRepresentation();
 
             Assert.AreEqual("A & B & C", result);
@@ -239,9 +239,9 @@ namespace ExpressionTests
         [TestMethod]
         public void ParseTerm_BANDBANDC_BANDBANDCExpression()
         {
-            Parser parser = new Parser("B&A&B");
+            Parser parser = new Parser();
 
-            Expression expression = parser.ParseTerm();
+            Expression expression = parser.ParseTerm("B&A&B");
             string result = expression.getStringRepresentation();
 
             Assert.AreEqual("B & A & B", result);
@@ -250,9 +250,9 @@ namespace ExpressionTests
         [TestMethod]
         public void ParseExpression_AORB_AORBExpression()
         {
-            Parser parser = new Parser("A|B");
+            Parser parser = new Parser();
 
-            Expression expression = parser.ParseExpression();
+            Expression expression = parser.ParseExpression("A|B");
             string result = expression.getStringRepresentation();
 
             Assert.AreEqual("A | B", result);
@@ -261,9 +261,9 @@ namespace ExpressionTests
         [TestMethod]
         public void ParseExpression_ANDBORCANDB_ANDBORCANDBExpression()
         {
-            Parser parser = new Parser("A&B|C&D");
+            Parser parser = new Parser();
 
-            Expression expression = parser.ParseExpression();
+            Expression expression = parser.ParseExpression("A&B|C&D");
             string result = expression.getStringRepresentation();
 
             Assert.AreEqual("A & B | C & D", result);
@@ -272,9 +272,9 @@ namespace ExpressionTests
         [TestMethod]
           public void ParseExpression_BracketedA_BracketedAExpression()
         {
-            Parser parser = new Parser("(A)");
+            Parser parser = new Parser();
 
-            Expression expression = parser.ParseExpression();
+            Expression expression = parser.ParseExpression("(A)");
             string result = expression.getStringRepresentation();
 
             Assert.AreEqual("(A)", result);
