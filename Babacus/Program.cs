@@ -4,6 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 
+//ISSUES:
+//lowcase letters do not function properly as in the ascii table there are values between Z and a for SOME IDIOTIC REASON
+
 Console.WriteLine("******************************** \nWELCOME TO BABCUS :3 \nMade by Kenneth Knight \n********************************");
 
 Console.WriteLine("Enter in the boolean algebra expression: ");
@@ -21,9 +24,12 @@ Expression expression = parser.Parse(input);
 char[] variablesInInput = input.Where(x => char.IsLetter(x)).Distinct().ToArray();
 Array.Sort(variablesInInput);
 
-int[] variableIndexes = variablesInInput.Select(x => x - 'A').ToArray(); 
+int[] variableIndexes = variablesInInput.Select(x => x - 'A').ToArray();
 
-Console.WriteLine(" " + string.Join(" | ", variablesInInput) + " | Output");
+string tableHeader = " " + string.Join(" | ", variablesInInput) + " | Output";
+Console.WriteLine(tableHeader);
+string headerDivider = new string('-', tableHeader.Length);
+Console.WriteLine(headerDivider);
 
 ulong possibleCombinations = (ulong)Math.Pow(2.0, (double)variablesInInput.Length);
 for (ulong inputInBinary = 0; inputInBinary < possibleCombinations; inputInBinary++)
@@ -33,10 +39,14 @@ for (ulong inputInBinary = 0; inputInBinary < possibleCombinations; inputInBinar
     const int possibleVariables = 26 * 2;
     bool[] inputVariables = new bool[possibleVariables];
 
+    int[] displayedInputs = new int[variablesInInput.Length];
+
     int start = ulongLen - variablesInInput.Length;
     for (int digitIndex = start; digitIndex < ulongLen; digitIndex++)
     {
         ulong digitValue = (inputInBinary >> (ulongLen - 1 - digitIndex)) & 1; //change to int?
+
+        displayedInputs[digitIndex - start] = (int)digitValue;
 
         if (digitValue == 1)
         {
@@ -47,9 +57,7 @@ for (ulong inputInBinary = 0; inputInBinary < possibleCombinations; inputInBinar
         }
     }
 
-
-
-    Console.WriteLine(" " + string.Join(" | ", variablesInInput) + $"{expression.Evaluate(inputVariables)}");
+    Console.WriteLine(" " + string.Join(" | ", displayedInputs) + $" | {expression.Evaluate(inputVariables)}");
 }
 
 
