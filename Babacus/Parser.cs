@@ -73,7 +73,7 @@ namespace Babacus
 
             if (Char.IsLetter(input[parserHead]) == true)
             {
-                return new VariableExpression(input[parserHead] - 'A');
+                return new VariableExpression(letterToNum(input[parserHead]));
             }
 
             if (input[parserHead] == '0' || input[parserHead] == '1')
@@ -98,6 +98,14 @@ namespace Babacus
 
             
 
+        }
+
+        public int letterToNum(char c)
+        {
+            if (!Char.IsLetter(c)) throw new Exception($"Char {c} not a letter");
+
+            if (Char.IsUpper(c)) return c - 65;
+            else return c - 71;
         }
     }
 }

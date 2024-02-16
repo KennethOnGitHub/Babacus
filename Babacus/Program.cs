@@ -24,7 +24,7 @@ Expression expression = parser.Parse(input);
 char[] variablesInInput = input.Where(x => char.IsLetter(x)).Distinct().ToArray();
 Array.Sort(variablesInInput);
 
-int[] variableIndexes = variablesInInput.Select(x => x - 'A').ToArray();
+int[] variableIndexes = variablesInInput.Select(x => parser.letterToNum(x)).ToArray();
 
 string tableHeader = " " + string.Join(" | ", variablesInInput) + " | Output";
 Console.WriteLine(tableHeader);
