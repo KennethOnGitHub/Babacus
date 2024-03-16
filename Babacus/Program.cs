@@ -4,8 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 
-//ISSUES:
-//lowcase letters do not function properly as in the ascii table there are values between Z and a for SOME IDIOTIC REASON
 
 Console.WriteLine("******************************** \nWELCOME TO BABCUS :3 \nMade by Kenneth Knight \n********************************");
 
@@ -59,21 +57,6 @@ for (ulong inputInBinary = 0; inputInBinary < possibleCombinations; inputInBinar
 
     Console.WriteLine(" " + string.Join(" | ", displayedInputs) + $" | {expression.Evaluate(inputVariables)}");
 }
-
-
-
-
-//
-
-
-
-
-
-//TODO: make sure lowercase and uppercase are treated as diff variables
-
-//create an input array
-//express it in results
-//store results in 2d array
 
 
 
